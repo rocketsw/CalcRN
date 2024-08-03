@@ -1,4 +1,7 @@
 {
   "name": "CalcRN",
-  "slug": "Calc"
+  "slug": "Calc",
+  "ios": {
+      "bundleIdentifier": "com.tbaker29.calcrn"
+    },
 }

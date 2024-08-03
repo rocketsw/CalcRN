@@ -12,7 +12,7 @@ workflows:
       app_store_connect: codemagic
     environment:
       ios_signing:
-        distribution_type: app_store
+        distribution_type: development 
         bundle_identifier: com.tbaker29.calcrn
       vars:
           XCODE_WORKSPACE: "ExpoApp.xcworkspace" # <-- Put the name of your Xcode workspace here
@@ -36,7 +36,7 @@ workflows:
         script: |
           yarn install
           yarn global add expo-cli
-          expo eject
+          npx expo prebuild
       - name: Set Info.plist values
         script: |
           PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
