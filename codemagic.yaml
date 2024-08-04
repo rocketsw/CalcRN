@@ -40,7 +40,7 @@ workflows:
           brew install yarn --ignore-dependencies -g
           yarn install
           yarn add expo-cli
-          npx expo prebuild --platform ios
+          npx expo prebuild --platform ios --clean
       #- name: Run Expo Prebuild
       #  script: | 
       #    npx expo prebuild
