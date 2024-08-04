@@ -37,9 +37,10 @@ workflows:
     scripts:
       - name: Install dependencies, Expo CLI and eject app
         script: |
+          brew install yarn --ignore-dependencies -g
           yarn install
-          yarn global add expo-cli
-          npx expo prebuild
+          yarn add expo-cli
+          npx expo prebuild --platform ios
       #- name: Run Expo Prebuild
       #  script: | 
       #    npx expo prebuild
