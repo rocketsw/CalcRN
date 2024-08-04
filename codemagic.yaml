@@ -8,10 +8,11 @@ workflows:
     name: React Native iOS
     max_build_duration: 120
     instance_type: mac_mini_m1
-    integrations:
-      app_store_connect: codemagic
-    environment:
 
+    environment:
+      ios_signing:
+        distribution_type: development 
+        bundle_identifier: com.tbaker.calcrn
       vars:
           XCODE_WORKSPACE: "ExpoApp.xcworkspace" # <-- Put the name of your Xcode workspace here
           XCODE_SCHEME: "ExpoApp" # <-- Put the name of your Xcode scheme here
