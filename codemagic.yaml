@@ -19,8 +19,8 @@ workflows:
       vars:
           BUNDLE_ID: "com.htbaker.calcrn" # <-- Put your Bundle Id here e.g com.domain.myapp
           APP_ID: C5QZV27DC7 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
-          XCODE_WORKSPACE: "ExpoApp.xcworkspace" # <-- Put the name of your Xcode workspace here
-          XCODE_SCHEME: "ExpoApp" # <-- Put the name of your Xcode scheme here
+          XCODE_WORKSPACE: "CalcRN.xcodeproj" # <-- Put the name of your Xcode workspace here
+          XCODE_SCHEME: "CalcRN.xcscheme" # <-- Put the name of your Xcode scheme here
       node: 16.14.2
       xcode: 15.4
       cocoapods: default
