@@ -1,4 +1,4 @@
-
+CodeMagic build failed.  Changed .yaml to distribution_type: development 
 # Check out https://docs.codemagic.io/yaml/building-a-react-native-app/ for more information
 # Please review and update values
 
@@ -13,11 +13,11 @@ workflows:
     environment:
       ios_signing:
         distribution_type: development 
-        bundle_identifier: com.tbaker29.calcrn
+        bundle_identifier: com.tbaker.calcrn
       vars:
           XCODE_WORKSPACE: "ExpoApp.xcworkspace" # <-- Put the name of your Xcode workspace here
           XCODE_SCHEME: "ExpoApp" # <-- Put the name of your Xcode scheme here
-          BUNDLE_ID: "com.tbaker29.calcrn" # <-- Put your Bundle Id here e.g com.domain.myapp
+          BUNDLE_ID: "com.tbaker.calcrn" # <-- Put your Bundle Id here e.g com.domain.myapp
           APP_ID: C5QZV27DC7 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
       node: 16.14.2
       xcode: 13.1
