@@ -14,13 +14,13 @@ workflows:
       ios_signing:
         distribution_type: development 
         bundle_identifier: com.htbaker.calcrn
-      vars:
-          XCODE_WORKSPACE: "ExpoApp.xcworkspace" # <-- Put the name of your Xcode workspace here
-          XCODE_SCHEME: "ExpoApp" # <-- Put the name of your Xcode scheme here
-          BUNDLE_ID: "com.htbaker.calcrn" # <-- Put your Bundle Id here e.g com.domain.myapp
-          APP_ID: C5QZV27DC7 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
       groups:
             - appstore_credentials
+      vars:
+          BUNDLE_ID: "com.htbaker.calcrn" # <-- Put your Bundle Id here e.g com.domain.myapp
+          APP_ID: C5QZV27DC7 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
+          XCODE_WORKSPACE: "ExpoApp.xcworkspace" # <-- Put the name of your Xcode workspace here
+          XCODE_SCHEME: "ExpoApp" # <-- Put the name of your Xcode scheme here
       node: 16.14.2
       xcode: 15.4
       cocoapods: default
@@ -35,10 +35,13 @@ workflows:
               include: true
               source: true
     scripts:
-      - name: Install dependencies, Expo CLI and eject app
-        script: |
-          yarn install
-          yarn global add expo-cli
+      #- name: Install dependencies, Expo CLI and eject app
+      #  script: |
+      #    yarn install
+      #    yarn global add expo-cli
+      #    npx expo prebuild
+      - name: Run Expo Prebuild
+        script: | 
           npx expo prebuild
       - name: Set Info.plist values
         script: |

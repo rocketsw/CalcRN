@@ -1,7 +1,13 @@
 {
+  "expo": {
   "name": "CalcRN",
   "slug": "Calc",
+  "version": "1.0.0",
+  "assetBundlePatterns": [
+    "**/*"
+  ],
   "ios": {
-      "bundleIdentifier": "com.tbaker29.calcrn"
+      "bundleIdentifier": "com.htbaker29.calcrn"
     },
+  }
 }
