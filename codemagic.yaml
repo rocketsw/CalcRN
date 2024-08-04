@@ -48,9 +48,9 @@ workflows:
           PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
           PLIST_BUDDY=/usr/libexec/PlistBuddy
           $PLIST_BUDDY -c "Add :ITSAppUsesNonExemptEncryption bool false" $PLIST
-      - name: Install CocoaPods dependencies
-        script: |
-          cd ios && pod install
+      #- name: Install CocoaPods dependencies
+      #  script: |
+      #    cd ios && pod install
       - name: Increment build number
         script: |
           cd $CM_BUILD_DIR/ios
