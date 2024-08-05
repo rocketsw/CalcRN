@@ -19,7 +19,7 @@ workflows:
       vars:
           BUNDLE_ID: "com.htbaker.calcrn" # <-- Put your Bundle Id here e.g com.domain.myapp
           #APP_ID: "C5QZV27DC7" # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
-          APP_ID: "H5ZAF9K3Q3"
+          APP_ID: "H5ZAF9K3Q3.com.htbaker.*"
           XCODE_WORKSPACE: "CalcRN.xcworkspace" # <-- Put the name of your Xcode workspace here
           XCODE_SCHEME: "CalcRN" # <-- Put the name of your Xcode scheme here
       #node: 20.12.2
