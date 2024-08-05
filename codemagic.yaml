@@ -36,10 +36,15 @@ workflows:
               source: true
     scripts:
       - name: Install dependencies, Expo CLI and eject app
+      #next line does not help even though it installs latest node. 
+      #path is still set to /usr/local/bin where old node version is found
+      #brew installs in /opt/homebrew/bin
+      # brew install node -g
         script: |
           brew install yarn --ignore-dependencies -g
           yarn install
           yarn add expo-cli
+          expo --version
           npx expo prebuild --platform ios --clean
       #- name: Run Expo Prebuild
       #  script: | 
