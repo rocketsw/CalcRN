@@ -42,10 +42,10 @@ workflows:
       #brew installs in /opt/homebrew/bin
       # brew install node -g
         script: |
-          brew install yarn --ignore-dependencies -g
-          yarn install
-          yarn add expo-cli
-          expo --version
+          #brew install yarn --ignore-dependencies -g
+          npm install
+          #yarn add expo-cli
+          npx expo --version
           npx expo prebuild --platform ios --clean
       #- name: Run Expo Prebuild
       #  script: | 
