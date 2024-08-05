@@ -19,7 +19,7 @@ workflows:
       vars:
           BUNDLE_ID: "com.htbaker.calcrn" # <-- Put your Bundle Id here e.g com.domain.myapp
           #APP_ID: "C5QZV27DC7" # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
-          APP_ID: "H5ZAF9K3Q3.com.htbaker.*"
+          APP_ID: "H5ZAF9K3Q3"
           XCODE_WORKSPACE: "CalcRN.xcworkspace" # <-- Put the name of your Xcode workspace here
           XCODE_SCHEME: "CalcRN" # <-- Put the name of your Xcode scheme here
       #node: 20.12.2
@@ -70,7 +70,8 @@ workflows:
         script: |
           xcode-project build-ipa \
             --workspace "$CM_BUILD_DIR/ios/$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
+            --scheme "$XCODE_SCHEME" \ 
+            --archive-flags="-destination 'generic/platform=iOS'"
     artifacts:
         - build/ios/ipa/*.ipa
         - /tmp/xcodebuild_logs/*.log

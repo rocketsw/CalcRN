@@ -7,7 +7,7 @@
     "**/*"
   ],
   "ios": {
-      "bundleIdentifier": "com.htbaker29.calcrn"
+      "bundleIdentifier": "com.htbaker.calcrn"
     },
   }
 }
