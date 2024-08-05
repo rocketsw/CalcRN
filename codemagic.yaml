@@ -21,8 +21,10 @@ workflows:
           APP_ID: C5QZV27DC7 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
           XCODE_WORKSPACE: "CalcRN.xcodeproj" # <-- Put the name of your Xcode workspace here
           XCODE_SCHEME: "xcscheme" # <-- Put the name of your Xcode scheme here
-      node: 16.14.2
-      xcode: 15.4
+      #node: 20.12.2
+      node: default
+      #xcode: 15.4
+      xcode: default
       cocoapods: default
       
     triggering:
