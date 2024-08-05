@@ -22,10 +22,8 @@ workflows:
           XCODE_WORKSPACE: "CalcRN.xcodeproj" # <-- Put the name of your Xcode workspace here
           XCODE_SCHEME: "xcscheme" # <-- Put the name of your Xcode scheme here
       #node: 20.12.2
-      node: default
       #xcode: 15.4
-      xcode: default
-      cocoapods: default
+      #cocoapods: default
       
     triggering:
         events:
