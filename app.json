@@ -1,13 +1,18 @@
 {
   "expo": {
-  "name": "CalcRN",
-  "slug": "Calc",
-  "version": "1.0.0",
-  "assetBundlePatterns": [
-    "**/*"
-  ],
-  "ios": {
+    "name": "CalcRN",
+    "slug": "Calc",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
       "bundleIdentifier": "com.htbaker.calcrn"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "de86919b-538c-4603-ba64-fbf26bd7e7d7"
+      }
     }
   }
 }
