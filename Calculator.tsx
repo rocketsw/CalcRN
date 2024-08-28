@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './store';
 import { inputDigit, inputDecimal, setOperation, clearDisplay, debug, calculateResult } from './features/calculatorSlice';
 import CalculatorInputButton from './components/CalculatorInputButton';
+import { styles } from "./styles";
 //import { ACTIONS } from './constants/Actions'
 
 // division symbol is ÷
@@ -54,27 +55,30 @@ export const Calculator = () => {
   */
   return (
     <View style={styles.container}>
+      <View>
+        <Text style={styles.displayText}>React Native Calculator</Text>
+      </View>      
       <View style={styles.display}>
-        <Text style={styles.displayText}>{current}</Text>
+        <Text style={styles.displayResult}>{current}</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <CalculatorInputButton handleFunction={handleDigitPress} value="7" />
-        <CalculatorInputButton handleFunction={handleDigitPress} value="8" />
-        <CalculatorInputButton handleFunction={handleDigitPress} value="9" />
-        <CalculatorInputButton handleFunction={handleChooseOperation} value="÷" />
-        <CalculatorInputButton handleFunction={handleDigitPress} value="4" />
-        <CalculatorInputButton handleFunction={handleDigitPress} value="5" />
-        <CalculatorInputButton handleFunction={handleDigitPress} value="6" />
-        <CalculatorInputButton handleFunction={handleChooseOperation} value="*" />
-        <CalculatorInputButton handleFunction={handleDigitPress} value="1" />
-        <CalculatorInputButton handleFunction={handleDigitPress} value="2" />
-        <CalculatorInputButton handleFunction={handleDigitPress} value="3" />
-        <CalculatorInputButton handleFunction={handleChooseOperation} value="-" />
-        <CalculatorInputButton handleFunction={handleDecimalPress} value="." />
-        <CalculatorInputButton handleFunction={handleDigitPress} value="0" />
-        <CalculatorInputButton handleFunction={handleClearPress} value="C" />
-        <CalculatorInputButton handleFunction={handleChooseOperation} value="+" />
-        <CalculatorInputButton handleFunction={handleEqualPress} value="=" />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="7" type='digit' />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="8" type='digit' />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="9" type='digit' />
+        <CalculatorInputButton handleFunction={handleChooseOperation} value="÷" type='op' />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="4" type='digit' />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="5" type='digit' />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="6" type='digit' />
+        <CalculatorInputButton handleFunction={handleChooseOperation} value="*" type='op' />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="1" type='digit' />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="2" type='digit' />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="3" type='digit' />
+        <CalculatorInputButton handleFunction={handleChooseOperation} value="-" type='op' />
+        <CalculatorInputButton handleFunction={handleDecimalPress} value="." type='digit' />
+        <CalculatorInputButton handleFunction={handleDigitPress} value="0" type='digit' />
+        <CalculatorInputButton handleFunction={handleClearPress} value="C" type='digit' />
+        <CalculatorInputButton handleFunction={handleChooseOperation} value="+" type='op' />
+        <CalculatorInputButton handleFunction={handleEqualPress} value="=" type='op' />
         { /* <CalculatorInputButton handleFunction={handleDebugPress} value="debug" /> */}
       </View>
       <View style={styles.display}>
@@ -85,48 +89,3 @@ export const Calculator = () => {
     </View>
   );
 }
-
-/*
-<View style={styles.display}>
-<Text>Current Operand: {current}</Text>
-<Text>Previous Operand: {previous}</Text>
-<Text>Operation: {operation}</Text>
-</View>
-*/
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f0f0f0',
-    padding: 20,
-  },
-  display: {
-    backgroundColor: '#fff',
-    padding: 20,
-    marginBottom: 20,
-    borderRadius: 10,
-  },
-  displayText: {
-    fontSize: 36,
-    textAlign: 'right',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  button: {
-    width: '22%',
-    aspectRatio: 1,
-    backgroundColor: '#e0e0e0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-    borderRadius: 10,
-  },
-  buttonText: {
-    fontSize: 24,
-  },
-});
-
-//export default Calculator;
