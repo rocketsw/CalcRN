@@ -19,7 +19,7 @@ const calculatorSlice = createSlice({
   initialState,
   reducers: {
     inputDigit(state, action: PayloadAction<string | undefined>) {
-      //console.log("inputDigit: ", action.payload);
+      //console.log('inputDigit: ', action.payload);
       if (action != null && action.payload != null) {
         if (state.overwrite) {
           state.currentOperand = action.payload;
@@ -95,11 +95,42 @@ const calculatorSlice = createSlice({
       }
     },
 
+    clearAll(state) {
+      //console.log('clearAll');
+      state.currentOperand = '0';
+      state.previousOperand = '0';
+      state.operation = '';
+      state.overwrite = true;
+    },
+
     clearDisplay(state) {
       //console.log('clearDisplay');
       state.currentOperand = '0';
-      state.operation = '';
       state.overwrite = true;
+    },
+
+    changeSign(state) {
+      //console.log('changeSign');
+      if (state.currentOperand.at(0) != '0') {
+        if (state.currentOperand.at(0) == '-') {
+          state.currentOperand = state.currentOperand.slice(1);
+        } else {
+          state.currentOperand = '-' + state.currentOperand;
+        }
+      }
+    },
+
+    backSpace(state) {
+      //console.log('backSpace', 'length', state.currentOperand.length);
+      let newValue = '0'
+      if (state.currentOperand != '0' && state.currentOperand.length > 0) {
+        newValue = state.currentOperand.slice(0,state.currentOperand.length-1);
+        if( newValue.length === 0) {
+          newValue = '0'
+          state.overwrite = true;
+        }
+        state.currentOperand = newValue
+      }
     },
 
     debug(state) {
@@ -182,7 +213,10 @@ export const {
   inputDigit,
   inputDecimal,
   setOperation,
+  clearAll,
   clearDisplay,
+  changeSign,
+  backSpace,
   debug,
   calculateResult,
 } = calculatorSlice.actions;

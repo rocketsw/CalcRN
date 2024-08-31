@@ -30,7 +30,23 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-  button_: {
+  digitButtonContainer: {
+    width: '72%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  opButtonContainer: {
+    width: '25%',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  displayEqualContainer: {
+    backgroundColor: 'lightblue',
+    width:'22%',
+  },
+  buttonHide: {
     width: '22%',
     aspectRatio: 1,
     backgroundColor: '#e0e0e0',
@@ -40,16 +56,15 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
   button: {
-    width: '22%',
     aspectRatio: 1,
     borderWidth: 2,
     borderRadius: 10,
-    padding: 15,
-    margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
     color: 'white',
+    padding: 15,
+    margin: 5,
     fontWeight: 'bold',
     textTransform: 'uppercase',
     shadowColor: '#000',
@@ -59,13 +74,20 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   digitButton: {
+    width: '22%',
     backgroundColor: '#3498db',
     borderColor: '#004080',
   },
   opButton: {
+    width: '22%',
     backgroundColor: '#ff9900',
     borderColor: '#995c00',
   },
+  equalButton: {
+    alignItems: 'center',
+    width: '22%',
+
+    },
   buttonText: {
     fontSize: 24,
   },

@@ -1,31 +1,33 @@
 //import { ACTIONS } from "../constants/Actions"
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, ViewStyle, StyleProp  } from "react-native";
 import { styles } from "../styles";
 
-const digitButtonStyle = StyleSheet.flatten([styles.button, styles.digitButton]);
-const opButtonStyle = StyleSheet.flatten([styles.button, styles.opButton]);
-const digitButtonText = StyleSheet.flatten([styles.buttonText, styles.digitText]);
-const opButtonText = StyleSheet.flatten([styles.buttonText, styles.opText]);
+type ButtonStyle = StyleProp<ViewStyle>;
+  
+const digitButtonStyle: ButtonStyle = StyleSheet.flatten([styles.button, styles.digitButton]);
+const opButtonStyle: ButtonStyle = StyleSheet.flatten([styles.button, styles.opButton]);
+const digitTextStyle = StyleSheet.flatten([styles.buttonText, styles.digitText]);
+const opTextStyle = StyleSheet.flatten([styles.buttonText, styles.opText]);
 
 
 export type CalculatorInputButtonPropType = {
     handleFunction: (value?: string) => void;
-    value?: string;
+    value: string;
     type: string;
 }
 
 export default function CalculatorInputButton({ handleFunction, value, type }: CalculatorInputButtonPropType) {
-    let buttonStyle = digitButtonStyle;
-    let buttonText = digitButtonText;
+    let buttonStyle: ButtonStyle = digitButtonStyle;
+    let textStyle = digitTextStyle;
     if( type === 'op') {
         buttonStyle = opButtonStyle;
-        buttonText = opButtonText;
+        textStyle = opTextStyle;
     }
     return (
         <Pressable style={buttonStyle}
             onPress={() => handleFunction(value)}
         >
-            <Text style={buttonText}>{value}</Text>
+            <Text style={textStyle}>{value}</Text>
         </Pressable>
     )
 }
