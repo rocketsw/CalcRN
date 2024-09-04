@@ -5,6 +5,8 @@ interface CalculatorState {
   currentOperand: string;
   operation: string;
   overwrite: boolean;
+  memory: string;
+  canPressEqual: boolean;
 }
 
 const initialState: CalculatorState = {
@@ -12,6 +14,8 @@ const initialState: CalculatorState = {
   previousOperand: '0',
   operation: '',
   overwrite: true,
+  memory: '0',
+  canPressEqual: false,
 };
 
 const calculatorSlice = createSlice({
@@ -24,6 +28,7 @@ const calculatorSlice = createSlice({
         if (state.overwrite) {
           state.currentOperand = action.payload;
           state.overwrite = false;
+          state.canPressEqual = true;
         } else {
           if (state.currentOperand === '0') {
             return;
@@ -44,6 +49,7 @@ const calculatorSlice = createSlice({
         } else {
           state.currentOperand = '.';
           state.overwrite = false;
+          state.canPressEqual = true;
         }
       }
     },
@@ -57,9 +63,11 @@ const calculatorSlice = createSlice({
         state.previousOperand = computedValue;
         state.operation = action.payload;
         state.overwrite = true;
+        state.canPressEqual = false;
         return;
       }
       state.overwrite = true;
+      state.canPressEqual = false;
 
       if (state.currentOperand == '0' && state.previousOperand == '0') {
         //console.log("no curr or prev operand")
@@ -67,7 +75,7 @@ const calculatorSlice = createSlice({
       }
       if (action != null && action.payload != null) {
         if (state.currentOperand == '0') {
-          console.log('no curr operand, set operation');
+          //console.log('no curr operand, set operation');
           state.operation = action.payload;
           return;
         }
@@ -76,6 +84,7 @@ const calculatorSlice = createSlice({
           state.previousOperand = state.currentOperand;
           state.currentOperand = '0';
           state.overwrite = true;
+          state.canPressEqual = false;
           state.operation = action.payload;
           return;
         }
@@ -90,6 +99,7 @@ const calculatorSlice = createSlice({
           state.previousOperand = state.currentOperand;
           state.currentOperand = '0';
           state.overwrite = true;
+          state.canPressEqual = false;
           return;
         }
       }
@@ -101,12 +111,14 @@ const calculatorSlice = createSlice({
       state.previousOperand = '0';
       state.operation = '';
       state.overwrite = true;
+      state.canPressEqual = false;
     },
 
     clearDisplay(state) {
       //console.log('clearDisplay');
       state.currentOperand = '0';
       state.overwrite = true;
+      state.canPressEqual = false;
     },
 
     changeSign(state) {
@@ -122,15 +134,83 @@ const calculatorSlice = createSlice({
 
     backSpace(state) {
       //console.log('backSpace', 'length', state.currentOperand.length);
-      let newValue = '0'
+      let newValue = '0';
       if (state.currentOperand != '0' && state.currentOperand.length > 0) {
-        newValue = state.currentOperand.slice(0,state.currentOperand.length-1);
-        if( newValue.length === 0) {
-          newValue = '0'
+        newValue = state.currentOperand.slice(
+          0,
+          state.currentOperand.length - 1,
+        );
+        if (newValue.length === 0) {
+          newValue = '0';
           state.overwrite = true;
+          state.canPressEqual = false;
         }
-        state.currentOperand = newValue
+        state.currentOperand = newValue;
       }
+    },
+
+    oneOverX(state) {
+      //console.log('1/X');
+      if (state.currentOperand != null && state.currentOperand != '0' && state.currentOperand.length > 0) {
+        try {
+          //if (!state.overwrite) {
+              const current = parseFloat(state.currentOperand);
+              if (!isNaN(current)) {
+                let computation: number = 0;
+                computation = 1 / current;
+                state.currentOperand = computation.toString()
+                state.overwrite = true;
+                state.canPressEqual = true;
+              }
+           //}
+        } catch (e) {
+          state.currentOperand = 'Error';
+          state.previousOperand = '0';
+          state.operation = '';
+          state.overwrite = true;
+          state.canPressEqual = false;
+        }
+      }
+    },
+
+    xSquared(state) {
+      //console.log('1/X');
+      if (state.currentOperand != null && state.currentOperand != '0' && state.currentOperand.length > 0) {
+        try {
+          if (!state.overwrite) {
+              const current = parseFloat(state.currentOperand);
+              if (!isNaN(current)) {
+                let computation: number = 0;
+                computation = current ** 2;
+                state.currentOperand = computation.toString()
+                state.overwrite = true;
+                state.canPressEqual = true;
+              }
+           }
+        } catch (e) {
+          state.currentOperand = 'Error';
+          state.previousOperand = '0';
+          state.operation = '';
+        }
+      }
+    },
+
+    memoryStore(state) {
+      console.log('memoryStore', state.currentOperand);
+      state.memory = state.currentOperand;
+      state.overwrite = true;
+    },
+
+    memoryRecall(state) {
+      console.log('memoryRecall', state.memory);
+      state.currentOperand = state.memory;
+      state.overwrite = true;
+      state.canPressEqual = true;
+    },
+
+    memoryClear(state) {
+      console.log('memoryClear', state.memory);
+      state.memory = '0';
     },
 
     debug(state) {
@@ -146,7 +226,8 @@ const calculatorSlice = createSlice({
 
     calculateResult(state) {
       try {
-        if (!state.overwrite) {
+        if (state.canPressEqual) {
+        //if(state.currentOperand && state.previousOperand && state.operation) {
           if (
             !(
               state.operation == null ||
@@ -158,6 +239,7 @@ const calculatorSlice = createSlice({
             state.previousOperand = '0';
             state.operation = '';
             state.overwrite = true;
+            state.canPressEqual = false;
             //console.log('overwrite set to true');
           }
         }
@@ -217,6 +299,11 @@ export const {
   clearDisplay,
   changeSign,
   backSpace,
+  oneOverX,
+  xSquared,
+  memoryStore,
+  memoryRecall,
+  memoryClear,
   debug,
   calculateResult,
 } = calculatorSlice.actions;

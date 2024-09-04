@@ -66,7 +66,6 @@ export const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     fontWeight: 'bold',
-    textTransform: 'uppercase',
     shadowColor: '#000',
     shadowOffset: {width: 2, height: 2},
     shadowOpacity: 0.3,
